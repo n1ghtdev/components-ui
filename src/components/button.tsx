@@ -1,14 +1,13 @@
 import React from 'react';
+import ButtonBase from './button-base';
 
 export interface Button {
-  text: string | React.ReactNode;
-  onClick: Function;
+  children: string | React.ReactNode;
+  theme: 'success' | 'warning' | 'error' | 'info' | 'custom';
+  [key: string]: any;
 }
 
-export default function Button({ text, onClick }: Button) {
-  return (
-    <button onClick={onClick}>
-      {text}
-    </button>
-  );
+export default function Button(props: Button) {
+  const { children, ...rest } = props;
+  return <ButtonBase {...rest}>{children}</ButtonBase>;
 }
